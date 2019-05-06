@@ -1,11 +1,10 @@
 {
   "name": "template-blocks",
-  "version": "0.0.1",
-  "private": true,
-  "main": "./template-blocks.js",
+  "version": "0.0.2",
+  "main": "template-blocks.js",
   "files": [
-    "./template-blocks.js",
-    "./template-blocks.d.ts"
+    "template-blocks.js",
+    "template-blocks.d.ts"
   ],
   "types": "template-blocks.d.ts",
   "scripts": {
