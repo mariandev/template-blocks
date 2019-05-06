@@ -117,3 +117,5 @@ typings/
 
 dist
 .idea
+template-blocks.js
+template-blocks.d.ts

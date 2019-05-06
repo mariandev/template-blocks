@@ -1,11 +1,25 @@
 {
   "name": "template-blocks",
   "version": "0.0.1",
+  "private": true,
+  "main": "./template-blocks.js",
+  "files": [
+    "./template-blocks.js",
+    "./template-blocks.d.ts"
+  ],
+  "types": "template-blocks.d.ts",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w"
+    "build": "webpack-cli",
+    "watch": "webpack-cli --watch"
   },
-  "dependencies": {
-    "typescript": "^3.4.5"
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^12.0.0",
+    "clean-webpack-plugin": "^2.0.1",
+    "dts-bundle": "^0.7.3",
+    "ts-loader": "^5.4.6",
+    "typescript": "^3.4.5",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.2"
   }
 }
