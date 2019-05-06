@@ -1,4 +1,5 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require("path");
 
 module.exports = {
 	mode: "development",
@@ -26,15 +27,17 @@ module.exports = {
 	},
 	output: {
 		filename: 'template-blocks.js',
-		path: __dirname,
+		path: path.resolve(__dirname, "dist"),
 		libraryTarget: "window"
 	},
 	plugins: [
 		new DtsBundlePlugin(),
 		new CleanWebpackPlugin({
+			verbose: true,
 			cleanOnceBeforeBuildPatterns: [],
 			cleanAfterEveryBuildPatterns: [
-				"./dist/"
+				"./*",
+				"!./template-blocks.*"
 			]
 		})
 	]
@@ -48,7 +51,7 @@ DtsBundlePlugin.prototype.apply = function (compiler) {
 		dts.bundle({
 			name: "template-blocks",
 			main: 'dist/index.d.ts',
-			out: '../template-blocks.d.ts',
+			out: 'template-blocks.d.ts',
 			removeSource: true,
 			outputAsModuleFolder: true // to use npm in-package typings
 		});

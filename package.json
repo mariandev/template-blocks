@@ -1,12 +1,12 @@
 {
   "name": "template-blocks",
-  "version": "0.0.2",
-  "main": "template-blocks.js",
+  "version": "0.0.3",
+  "main": "dist/template-blocks.js",
   "files": [
     "template-blocks.js",
     "template-blocks.d.ts"
   ],
-  "types": "template-blocks.d.ts",
+  "types": "dist/template-blocks.d.ts",
   "scripts": {
     "build": "webpack-cli",
     "watch": "webpack-cli --watch"
