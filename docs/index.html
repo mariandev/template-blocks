@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>template-blocks</title>
+	<title>Template Blocks</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">template-blocks</a>
+					<a href="index.html" class="title">Template Blocks</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -56,7 +56,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> template-blocks</h1>
+			<h1> Template Blocks</h1>
 		</div>
 	</div>
 </header>
@@ -64,6 +64,74 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
+				<h1 id="template-blocks">Template Blocks</h1>
+				<h3 id="examples">Examples</h3>
+				<h4 id="basic-example">Basic example</h4>
+				<pre><code class="language-javascript"><span class="hljs-comment">// Timestamp generator</span>
+<span class="hljs-keyword">const</span> ts = <span class="hljs-keyword">new</span> Timestamp();
+
+<span class="hljs-comment">// A snapshot of the current timestamp</span>
+<span class="hljs-keyword">const</span> snapshot = ts.get();
+
+<span class="hljs-comment">// A constant containing the previous snapshot</span>
+<span class="hljs-keyword">const</span> now = <span class="hljs-keyword">new</span> Const.of(snapshot);
+
+<span class="hljs-comment">// The time since the code was executed</span>
+<span class="hljs-keyword">const</span> delta = <span class="hljs-keyword">new</span> Diff(ts, now);
+
+setInterval(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(delta.get());
+});</code></pre>
+				<h4 id="basic-example-compact-writing">Basic example - compact writing</h4>
+				<pre><code class="language-javascript"><span class="hljs-comment">// Timestamp generator</span>
+<span class="hljs-keyword">const</span> ts = <span class="hljs-keyword">new</span> Timestamp();
+
+<span class="hljs-comment">// The time since the code was executed</span>
+<span class="hljs-keyword">const</span> delta = ts.pipe(Diff, <span class="hljs-keyword">new</span> Const(ts.get()));
+
+setInterval(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(delta.get());
+});</code></pre>
+				<h4 id="advanced-example">Advanced example</h4>
+				<pre><code class="language-javascript"><span class="hljs-comment">// Get mouse position</span>
+<span class="hljs-keyword">const</span> mousePosition = <span class="hljs-keyword">new</span> GetMousePosition();
+<span class="hljs-keyword">let</span> mouseSnapshot = mousePosition.get();
+
+<span class="hljs-keyword">const</span> mouseMoving = <span class="hljs-keyword">new</span> Var(<span class="hljs-literal">false</span>);
+
+<span class="hljs-comment">// Delta time</span>
+<span class="hljs-keyword">const</span> dtSource = <span class="hljs-keyword">new</span> DeltaTime();
+<span class="hljs-keyword">const</span> dt = <span class="hljs-keyword">new</span> Var(dtSource.get());
+
+<span class="hljs-comment">// Light intensity</span>
+<span class="hljs-keyword">const</span> lightIntensity = <span class="hljs-keyword">new</span> Var(<span class="hljs-number">0</span>);
+<span class="hljs-comment">// Node that calculates the next intensity value</span>
+<span class="hljs-keyword">const</span> lightIntensityCalculator = lightIntensity
+  .pipe(
+      Add,
+      <span class="hljs-keyword">new</span> If(mouseMoving, Const.of(<span class="hljs-number">1</span>), Const.of(<span class="hljs-number">-1</span>))
+        .pipe(Mul, Const.of(<span class="hljs-number">4</span>))
+        .pipe(Mul, dt)
+  )
+  .pipe(Clamp, Const.of(<span class="hljs-number">0</span>), Const.of(<span class="hljs-number">1</span>));
+
+(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loop</span>(<span class="hljs-params"></span>) </span>{
+    requestAnimationFrame(loop);
+
+    <span class="hljs-comment">// Set delta time variable for other nodes to use</span>
+    dt.set(dtSource.get());
+
+    <span class="hljs-comment">// Set mouseMoving variable for other noodes to use</span>
+    <span class="hljs-keyword">const</span> _mouseSnapshot = mousePosition.get();
+    mouseMoving.set(!mouseSnapshot.equals(_mouseSnapshot));
+    mouseSnapshot = _mouseSnapshot;
+
+    <span class="hljs-comment">// Set the new value of the light intensity</span>
+    lightIntensity.set(lightIntensityCalculator.get());
+
+    <span class="hljs-comment">// Output the light intensity</span>
+    <span class="hljs-built_in">console</span>.log(lightIntensity.get());
+})();</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -177,7 +245,7 @@
 		</div>
 	</div>
 </div>
-<footer class="with-border-bottom">
+<footer>
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
@@ -236,9 +304,6 @@
 		</div>
 	</div>
 </footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
 <script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>

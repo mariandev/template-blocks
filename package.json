@@ -1,6 +1,6 @@
 {
   "name": "template-blocks",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "dist/template-blocks.js",
   "files": [
     "dist/template-blocks.js",
@@ -10,7 +10,7 @@
   "scripts": {
     "build": "webpack-cli",
     "watch": "webpack-cli --watch",
-    "docs": "typedoc --mode file --out docs"
+    "docs": "typedoc"
   },
   "dependencies": {},
   "devDependencies": {
