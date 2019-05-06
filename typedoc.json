@@ -3,5 +3,6 @@
   "mode": "modules",
   "out": "docs",
   "hideGenerator": true,
-  "external-modulemap": ".*\/([\\w\\-_]+)+\/"
+  "external-modulemap": ".*\/([\\w\\-_]+)+\/",
+  "sourcefile-url-prefix": "https://github.com/mariandev/template-blocks/tree/master/src/"
 }
