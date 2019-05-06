@@ -1,6 +1,6 @@
 {
   "name": "template-blocks",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/template-blocks.js",
   "files": [
     "dist/template-blocks.js",
@@ -19,6 +19,7 @@
     "dts-bundle": "^0.7.3",
     "ts-loader": "^5.4.6",
     "typedoc": "^0.14.2",
+    "typedoc-plugin-external-module-map": "^1.0.0",
     "typescript": "^3.4.5",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.2"

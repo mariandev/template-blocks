@@ -1,6 +1,7 @@
 {
   "name": "Template Blocks",
-  "mode": "file",
+  "mode": "modules",
   "out": "docs",
-  "hideGenerator": true
+  "hideGenerator": true,
+  "external-modulemap": ".*\/([\\w\\-_]+)+\/"
 }
