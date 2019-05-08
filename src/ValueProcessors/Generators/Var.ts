@@ -1,4 +1,4 @@
-import {ValueProcessor} from "../../ValueProcessor";
+import {ValueProcessor} from "../ValueProcessor";
 
 export class Var<T> extends ValueProcessor<T> {
 	constructor(private value: T) {

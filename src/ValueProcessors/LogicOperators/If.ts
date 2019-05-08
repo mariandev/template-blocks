@@ -1,4 +1,4 @@
-import {ValueProcessor} from "../../ValueProcessor";
+import {ValueProcessor} from "../ValueProcessor";
 
 export class If<TOut> extends ValueProcessor<TOut> {
 	constructor(private readonly expression: ValueProcessor<boolean>,

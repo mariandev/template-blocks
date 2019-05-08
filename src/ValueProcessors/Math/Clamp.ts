@@ -1,4 +1,4 @@
-import {ValueProcessor} from "../../ValueProcessor";
+import {ValueProcessor} from "../ValueProcessor";
 import {AnyFloat, float, float2} from "../../Primitives";
 
 export class Clamp<T extends AnyFloat> extends ValueProcessor<T> {

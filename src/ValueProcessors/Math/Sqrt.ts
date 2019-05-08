@@ -1,5 +1,5 @@
 import {AnyFloat, float, float2} from "../../Primitives";
-import {ValueProcessor} from "../../ValueProcessor";
+import {ValueProcessor} from "../ValueProcessor";
 
 export class Sqrt<T extends AnyFloat> extends ValueProcessor<T, ValueProcessor<T>> {
 	constructor(private readonly value: ValueProcessor<T>) {

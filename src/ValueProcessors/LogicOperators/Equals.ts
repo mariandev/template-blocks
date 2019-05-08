@@ -1,4 +1,4 @@
-import {ValueProcessor} from "../../ValueProcessor";
+import {ValueProcessor} from "../ValueProcessor";
 import {IOpEquals} from "../../Interfaces/LogicOperators";
 import {float, float2} from "../../Primitives";
 

@@ -1,4 +1,4 @@
-import {ValueProcessor} from "../../ValueProcessor";
+import {ValueProcessor} from "../ValueProcessor";
 import {float2} from "../../Primitives";
 
 export class GetMousePosition extends ValueProcessor<float2> {

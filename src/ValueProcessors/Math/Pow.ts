@@ -1,5 +1,5 @@
-import {ValueProcessor} from "../../ValueProcessor";
-import {AnyFloat, float, float2} from "../../Primitives";
+import {ValueProcessor} from "../ValueProcessor";
+import {AnyFloat} from "../../Primitives";
 import {DoOp} from "./DoOp";
 
 export class Pow<T extends AnyFloat> extends ValueProcessor<T> {

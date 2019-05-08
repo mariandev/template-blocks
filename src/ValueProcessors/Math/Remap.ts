@@ -1,4 +1,4 @@
-import {ValueProcessor} from "../../ValueProcessor";
+import {ValueProcessor} from "../ValueProcessor";
 import {AnyFloat, float, float2} from "../../Primitives";
 import {Const} from "../Generators";
 

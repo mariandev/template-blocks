@@ -1,5 +1,4 @@
-import {ValueProcessor} from "../../ValueProcessor";
-import {AnyFloat} from "../../Primitives";
+import {ValueProcessor} from "../ValueProcessor";
 
 export class Const<T> extends ValueProcessor<T> {
 	constructor(private readonly value: T) {

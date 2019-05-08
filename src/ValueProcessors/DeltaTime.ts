@@ -1,4 +1,4 @@
-import {ValueProcessor} from "../ValueProcessor";
+import {ValueProcessor} from "./ValueProcessor";
 import {float} from "../Primitives";
 import {Timestamp} from "./Generators";
 

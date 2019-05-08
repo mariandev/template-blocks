@@ -1,4 +1,4 @@
-import {Const} from "./ValueProcessors/Generators";
+// import {Const} from "./Generators";
 
 type Prop2<TClass> = TClass extends ValueProcessor<any, any, infer P> ? P : never;
 
@@ -34,9 +34,9 @@ export abstract class ValueProcessor<TOut, TP1 = never, TP2 = never> {
 		return this;
 	}
 
-	toConst(): Const<TOut> {
-		return new Const(this.get());
-	}
+	// toConst(): Const<TOut> {
+	// 	return new Const(this.get());
+	// }
 }
 
 export class Source<TOut, TP1 = never, TP2 = never> extends ValueProcessor<TOut, TP1, TP2> {
