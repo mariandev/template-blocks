@@ -8,6 +8,7 @@
   ],
   "types": "dist/template-blocks.d.ts",
   "scripts": {
+    "setup": "yarn",
     "build": "webpack-cli",
     "watch": "webpack-cli --watch",
     "docs": "typedoc",
