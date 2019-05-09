@@ -1,2 +1,21 @@
+language: node_js
+node_js: '8'
+cache: yarn
+
+before_script:
+  - yarn setup
+  - yarn build
+
 script:
-  - 'bash ./travis/trigger-tests'
+  - yarn test
+
+after_success:
+  - yarn docs
+
+deploy:
+  - provider: pages
+    skip_cleanup: true
+    local_dir: docs/
+    github_token: $GITHUB_TOKEN
+    on:
+      tags: true
