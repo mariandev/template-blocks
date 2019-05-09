@@ -1,5 +1,6 @@
 # Template Blocks
 
+[![Build Status](https://travis-ci.com/mariandev/template-blocks.svg?branch=master)](https://travis-ci.com/mariandev/template-blocks)
 
 ### Examples
 #### Basic example
