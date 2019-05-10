@@ -12,16 +12,14 @@
     "build": "webpack-cli",
     "watch": "webpack-cli --watch",
     "docs": "typedoc",
-    "pretest": "yarn check-deps",
-    "test": "jest",
-    "check-deps": "depcruise --validate .dependency-cruiser.json src"
+    "test": "jest"
   },
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^24.0.12",
     "@types/node": "^12.0.0",
+    "circular-dependency-plugin": "^5.0.2",
     "clean-webpack-plugin": "^2.0.1",
-    "dependency-cruiser": "^4.17.0",
     "dts-bundle": "^0.7.3",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
