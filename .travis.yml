@@ -13,7 +13,7 @@ after_success:
   - yarn docs
 
 before_deploy:
-  - "yarn version --patch --silent"
+  - "yarn version --patch --non-interactive"
 
 after_deploy:
   - "git push"
