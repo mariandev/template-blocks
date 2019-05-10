@@ -23,11 +23,6 @@ export abstract class ValueProcessor<TOut, TP1 = never, TP2 = never> {
 		return new processor(this, ...params);
 	}
 
-	dump(): this {
-		console.log(this);
-		return this;
-	}
-
 	public toSource(): Source<TOut, TP1, TP2> {
 		return new Source<TOut, TP1, TP2>(this);
 	}
