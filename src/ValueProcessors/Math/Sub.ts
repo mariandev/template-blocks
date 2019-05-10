@@ -1,6 +1,6 @@
 import {ValueProcessor} from "../ValueProcessor";
 import {AnyFloat} from "../../Primitives";
-import {Const} from "../Generators";
+import {Const} from "../ValueProcessor";
 import {DoOp} from "./DoOp";
 
 export class Sub<T extends AnyFloat> extends ValueProcessor<T> {

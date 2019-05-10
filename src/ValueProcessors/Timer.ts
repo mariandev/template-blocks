@@ -1,6 +1,7 @@
 import {ValueProcessor} from "./ValueProcessor";
 import {float} from "../Primitives";
-import {Const, Timestamp} from "./Generators";
+import {Timestamp} from "./Generators";
+import {Const} from "./ValueProcessor";
 import {Sub} from "./Math";
 
 export class Timer extends ValueProcessor<float> {

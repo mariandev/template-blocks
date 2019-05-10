@@ -1,4 +1,4 @@
-import {Var} from "./Var";
+import {Var} from "./ValueProcessor";
 
 describe("Var", () => {
 	it("should create a new instance containing the specified value when the constructor is called", () => {

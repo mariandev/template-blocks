@@ -1,6 +1,6 @@
 import {ValueProcessor} from "../ValueProcessor";
 import {AnyFloat, float, float2} from "../../Primitives";
-import {Const} from "../Generators";
+import {Const} from "../ValueProcessor";
 
 export class Remap<T extends AnyFloat> extends ValueProcessor<T> {
 	constructor(private readonly value: ValueProcessor<T>,
