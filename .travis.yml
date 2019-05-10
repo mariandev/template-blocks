@@ -14,25 +14,25 @@ script:
 after_success:
   - yarn docs
 
-before_deploy:
-  - "bumper bump patch"
-
-after_deploy:
-  - git add package.json
-  - git commit -m "$(jq -r '.version' package.json)"
-  - git tag "v$(jq -r '.version' package.json)"
-  - git remote add origin-npm https://${GITHUB_TOKEN}@github.com/mariandev/template-blocks.git
-  - git push --set-upstream origin-npm master
-  - git push --set-upstream origin-npm master --tags
-deploy:
-  - provider: pages
-    skip_cleanup: true
-    local_dir: docs/
-    github_token: $GITHUB_TOKEN
-    on:
-      branch: master
-  - provider: npm
-    email: mariandev96@gmail.com
-    api_key: $NPM_API_KEY
-    on:
-      branch: master
+#before_deploy:
+#  - "bumper bump patch"
+#
+#after_deploy:
+#  - git add package.json
+#  - git commit -m "$(jq -r '.version' package.json)"
+#  - git tag "v$(jq -r '.version' package.json)"
+#  - git remote add origin-npm https://${GITHUB_TOKEN}@github.com/mariandev/template-blocks.git
+#  - git push --set-upstream origin-npm master
+#  - git push --set-upstream origin-npm master --tags
+#deploy:
+#  - provider: pages
+#    skip_cleanup: true
+#    local_dir: docs/
+#    github_token: $GITHUB_TOKEN
+#    on:
+#      branch: master
+#  - provider: npm
+#    email: mariandev96@gmail.com
+#    api_key: $NPM_API_KEY
+#    on:
+#      branch: master
