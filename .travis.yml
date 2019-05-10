@@ -13,9 +13,10 @@ after_success:
   - yarn docs
 
 before_deploy:
-  - "yarn version --patch"
+  - "yarn version --patch --silent"
 
 after_deploy:
+  - "git push"
   - "git push --tags"
 
 deploy:
