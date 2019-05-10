@@ -3,7 +3,8 @@ node_js: '8'
 cache: yarn
 
 before_script:
-  - "apt-get install jq"
+  - sudo apt-get update
+  - sudo apt-get install -y jq
   - yarn setup
   - yarn build
 
@@ -17,11 +18,11 @@ before_deploy:
   - "bumper bump patch"
 
 after_deploy:
-  - "git commit -m\"$(jq -r '.version' package.json)\""
-  - "git tag -a \"v$(jq -r '.version' package.json)\""
-  - "git remote add origin https://${GITHUB_TOKEN}@github.com/mariandev/template-blocks.git"
-  - "git push --set-upstream origin master"
-  - "git push --set-upstream origin master --tags"
+  - git commit -m "$(jq -r '.version' package.json)"
+  - git tag -a "v$(jq -r '.version' package.json)"
+  - git remote add origin https://${GITHUB_TOKEN}@github.com/mariandev/template-blocks.git
+  - git push --set-upstream origin master
+  - git push --set-upstream origin master --tags
 deploy:
   - provider: pages
     skip_cleanup: true
