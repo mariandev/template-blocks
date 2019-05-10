@@ -12,7 +12,8 @@
     "build": "webpack-cli",
     "watch": "webpack-cli --watch",
     "docs": "typedoc",
-    "test": "jest"
+    "test": "jest",
+    "postversion": "git push --tags"
   },
   "dependencies": {},
   "devDependencies": {
