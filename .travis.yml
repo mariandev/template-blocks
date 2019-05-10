@@ -13,7 +13,7 @@ after_success:
   - yarn docs
 
 before_deploy:
-  - "yarn version"
+  - "yarn version --patch"
 
 after_deploy:
   - "git push --tags"
