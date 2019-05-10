@@ -1,6 +1,6 @@
 {
   "name": "template-blocks",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "dist/template-blocks.js",
   "files": [
     "dist/template-blocks.js",
