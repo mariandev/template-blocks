@@ -13,7 +13,7 @@ after_success:
   - yarn docs
 
 before_deploy:
-  - "yarn version --patch --non-interactive"
+  - "npm version patch"
 
 after_deploy:
   - "git push"
