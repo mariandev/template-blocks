@@ -3,6 +3,7 @@ node_js: '8'
 cache: yarn
 
 before_script:
+  - "apt-get install jq"
   - yarn setup
   - yarn build
 
@@ -13,10 +14,11 @@ after_success:
   - yarn docs
 
 before_deploy:
-  - "npm config set commit-hooks false"
-  - "npm version patch"
+  - "bumper bump patch"
 
 after_deploy:
+  - "git commit -m\"$(jq -r '.version' package.json)\""
+  - "git tag -a \"v$(jq -r '.version' package.json)\""
   - "git remote add origin https://${GITHUB_TOKEN}@github.com/mariandev/template-blocks.git"
   - "git push --set-upstream origin master"
   - "git push --set-upstream origin master --tags"
