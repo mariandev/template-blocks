@@ -23,6 +23,7 @@ deploy:
   - provider: npm
     email: mariandev96@gmail.com
     api_key: $NPM_API_KEY
+    skip_cleanup: true
     on:
       tags: true
       branch: master
