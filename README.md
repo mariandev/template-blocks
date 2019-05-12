@@ -12,7 +12,7 @@ const ts = new Timestamp();
 const snapshot = ts.get();
 
 // A constant containing the previous snapshot
-const now = new Const.of(snapshot);
+const now = new Const(snapshot);
 
 // The time since the code was executed
 const delta = new Diff(ts, now);
