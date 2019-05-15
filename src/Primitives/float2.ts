@@ -24,8 +24,60 @@ export class float2 implements IOpEquals, IOpGreater {
 		return this._magnitude;
 	}
 
-	public mul(value: float) {
-		return new float2(this.x * value, this.y * value);
+	private _angle: float | undefined;
+	public get angle(): float {
+		if(!this._angle) {
+			this._angle = Math.atan2(this.y, this.x);
+		}
+
+		return this._angle;
+	}
+
+	public add({x, y}: float2) {
+		return new float2(this.x + x, this.y + y);
+	}
+
+	public sub({x, y}: float2) {
+		return new float2(this.x - x, this.y - y);
+	}
+
+	public mul(value: float);
+	public mul(value: float2);
+	public mul(value: float | float2) {
+		let x: number, y: number;
+		if(value instanceof float2) {
+			x = value.x;
+			y = value.y;
+		} else {
+			x = y = value;
+		}
+
+		return new float2(this.x * x, this.y * y);
+	}
+
+	public div(value: float);
+	public div(value: float2);
+	public div(value: float | float2) {
+		let x: number, y: number;
+		if(value instanceof float2) {
+			x = value.x;
+			y = value.y;
+		} else {
+			x = y = value;
+		}
+
+		return new float2(this.x / x, this.y / y);
+	}
+
+	public dot(value: float2) {
+		return this.magnitude * value.magnitude * Math.cos(this.angle * Math.PI / 180);
+	}
+
+	public rotate(deg: float) {
+		const magnitude = this.magnitude;
+		const rad = deg * Math.PI / 180;
+		const angle = rad + this.angle;
+		return new float2(Math.cos(angle) * magnitude, Math.sin(angle) * magnitude);
 	}
 
 	public toString() {
