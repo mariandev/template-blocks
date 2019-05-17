@@ -1,4 +1,4 @@
-import {ValueProcessor} from "../ValueProcessor";
+import {ValueProcessor} from "../Base";
 import {float2} from "../../Primitives";
 
 export class GetWindowSize extends ValueProcessor<float2> {

@@ -1,6 +1,5 @@
-import {ValueProcessor} from "../ValueProcessor";
+import {Const, ValueProcessor} from "../Base";
 import {AnyFloat} from "../../Primitives";
-import {Const} from "../ValueProcessor";
 import {DoOp} from "./DoOp";
 
 export class Sub<T extends AnyFloat> extends ValueProcessor<T> {
@@ -17,6 +16,6 @@ export class Sub<T extends AnyFloat> extends ValueProcessor<T> {
 	}
 
 	public static OneMinus<T extends AnyFloat>(value: ValueProcessor<T>) {
-		return new Sub(Const.of(1 as T), value);
+		return new Sub(new Const(1 as T), value);
 	}
 }

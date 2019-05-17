@@ -1,7 +1,6 @@
-import {ValueProcessor} from "./ValueProcessor";
+import {Const, ValueProcessor} from "./Base";
 import {float} from "../Primitives";
 import {Timestamp} from "./Generators";
-import {Const} from "./ValueProcessor";
 import {Sub} from "./Math";
 
 export class Timer extends ValueProcessor<float> {
@@ -15,21 +14,21 @@ export class Timer extends ValueProcessor<float> {
 
 	public reset(): this {
 		this.beforeLastPause = 0;
-		this.sinceLastPause = Const.of(0);
+		this.sinceLastPause = new Const(0);
 
 		return this;
 	}
 
 	public pause(): this {
 		this.beforeLastPause += this.sinceLastPause.get();
-		this.sinceLastPause = Const.of(0);
+		this.sinceLastPause = new Const(0);
 
 		return this;
 	}
 
 	public play(): this {
 		const ts = new Timestamp();
-		this.sinceLastPause = new Sub(ts, Const.of(ts.get()));
+		this.sinceLastPause = new Sub(ts, new Const(ts));
 
 		return this;
 	}
