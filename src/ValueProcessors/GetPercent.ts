@@ -1,4 +1,4 @@
-import {ValueProcessor} from "./ValueProcessor";
+import {ValueProcessor} from "./Base";
 import {float, float2} from "../Primitives";
 
 export class GetPercent<T extends float | float2> extends ValueProcessor<T> {

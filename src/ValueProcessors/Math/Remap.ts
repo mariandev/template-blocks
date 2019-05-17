@@ -1,6 +1,5 @@
-import {ValueProcessor} from "../ValueProcessor";
+import {Const, ValueProcessor} from "../Base";
 import {AnyFloat, float, float2} from "../../Primitives";
-import {Const} from "../ValueProcessor";
 
 export class Remap<T extends AnyFloat> extends ValueProcessor<T> {
 	constructor(private readonly value: ValueProcessor<T>,
@@ -27,18 +26,18 @@ export class Remap<T extends AnyFloat> extends ValueProcessor<T> {
 
 			return new float2(
 				new Remap(
-					Const.of(value.x),
-					Const.of(fromMin.x),
-					Const.of(fromMax.x),
-					Const.of(toMin.x),
-					Const.of(toMax.x)
+					new Const(value.x),
+					new Const(fromMin.x),
+					new Const(fromMax.x),
+					new Const(toMin.x),
+					new Const(toMax.x)
 				).get(),
 				new Remap(
-					Const.of(value.y),
-					Const.of(fromMin.y),
-					Const.of(fromMax.y),
-					Const.of(toMin.y),
-					Const.of(toMax.y)
+					new Const(value.y),
+					new Const(fromMin.y),
+					new Const(fromMax.y),
+					new Const(toMin.y),
+					new Const(toMax.y)
 				).get()
 			)
 		} else {

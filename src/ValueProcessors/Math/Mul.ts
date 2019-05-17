@@ -1,4 +1,4 @@
-import {ValueProcessor} from "../ValueProcessor";
+import {ValueProcessor} from "../Base";
 import {AnyFloat} from "../../Primitives";
 import {DoOp} from "./DoOp";
 
