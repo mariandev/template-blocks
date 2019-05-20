@@ -6,6 +6,10 @@ export class DeltaTime extends ValueProcessor<float> {
 	private ts = new Timestamp();
 	private lsts: float = null;
 
+	reset() {
+		this.lsts = null;
+	}
+
 	get() {
 		if(this.lsts == null) this.lsts = this.ts.get();
 		const ts = this.ts.get();
