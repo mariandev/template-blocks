@@ -1,12 +1,12 @@
 import {ValueProcessor} from "./ValueProcessor";
 
-export class Const<T> extends ValueProcessor<T> {
-	private readonly value: T;
-	constructor(thing: T | ValueProcessor<T>) {
+export class Const<TOut> extends ValueProcessor<TOut> {
+	private readonly value: TOut;
+	constructor(thing: TOut | ValueProcessor<TOut, any, any>) {
 		super();
 
 		if (thing instanceof ValueProcessor) {
-			thing = thing.get() as T;
+			thing = thing.get() as TOut;
 		}
 
 		this.value = thing;

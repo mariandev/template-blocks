@@ -1,7 +1,7 @@
 import {ValueProcessor} from "../ValueProcessor";
 import {Const} from "../Const";
 
-export function toConst<T>(this: ValueProcessor<T>): Const<T> {
+export function toConst<TOut>(this: ValueProcessor<TOut, any, any>): Const<TOut> {
 	return new Const(this);
 }
 
