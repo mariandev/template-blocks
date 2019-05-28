@@ -1,17 +1,15 @@
 type Prop2<TClass> = TClass extends ValueProcessor<any, any, infer P> ? P : never;
 
+export type PropsVariants<TP1, TP2> = [TP1, TP2] | [TP1] | [];
+
 export abstract class ValueProcessor<TOut, TP1 = never, TP2 = never> {
 
-	protected readonly params: [TP1, TP2] |
-														 [TP1] |
-														 [];
+	public readonly params: PropsVariants<TP1, TP2>;
 
 	constructor();
 	constructor(p1: TP1);
 	constructor(p1: TP1, p2: TP2);
-	constructor(...params: [TP1, TP2] |
-												 [TP1] |
-												 []) {
+	constructor(...params: PropsVariants<TP1, TP2>) {
 		this.params = params;
 	}
 

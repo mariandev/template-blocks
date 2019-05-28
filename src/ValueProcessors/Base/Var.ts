@@ -1,20 +1,20 @@
 import {ValueProcessor} from "./ValueProcessor";
 
-export class Var<T> extends ValueProcessor<T> {
-	private value: T;
-	constructor(thing: T | ValueProcessor<T>) {
+export class Var<TOut> extends ValueProcessor<TOut> {
+	private value: TOut;
+	constructor(thing: TOut | ValueProcessor<TOut, any, any>) {
 		super();
 
 		if (thing instanceof ValueProcessor) {
-			thing = thing.get() as T;
+			thing = thing.get() as TOut;
 		}
 
 		this.value = thing;
 	}
 
-	set(thing: T | ValueProcessor<T>) {
+	set(thing: TOut | ValueProcessor<TOut>) {
 		if (thing instanceof ValueProcessor) {
-			thing = thing.get() as T;
+			thing = thing.get() as TOut;
 		}
 
 		this.value = thing;
