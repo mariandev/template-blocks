@@ -21,3 +21,5 @@ export abstract class ValueProcessor<TOut, TP1 = never, TP2 = never> {
 		return new processor(this, ...params);
 	}
 }
+
+export abstract class AnyValueProcessor<TOut> extends ValueProcessor<TOut, any, any> {}
