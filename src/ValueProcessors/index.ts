@@ -1,4 +1,5 @@
 export * from "./Base";
+export * from "./Augumentations";
 export * from "./Generators";
 export * from "./Math";
 export * from "./GetPercent";

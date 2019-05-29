@@ -1,6 +1,6 @@
-import {DeltaTime} from "../ValueProcessors";
+import {float} from "../Primitives";
 
-type LoopListener = (dt: number) => any;
+export type LoopListener = (dt: number) => any;
 
 export class Loop {
 	private _running: boolean = false;
@@ -9,17 +9,18 @@ export class Loop {
 	}
 
 	private _listeners: LoopListener[] = [];
-	private _dt: DeltaTime = new DeltaTime();
-	public get dt() {
-		return this._dt;
-	}
+
+	private lsts: float = null;
 
 	private loop() {
 		if(!this._running) return;
 
 		this.raf(this.loop);
 
-		const dt = this._dt.get();
+		if(this.lsts == null) this.lsts = Date.now();
+		const ts = Date.now();
+		const dt = (ts - this.lsts) / 1000;
+		this.lsts = ts;
 
 		for (const listener of this._listeners) {
 			listener(dt);
@@ -56,7 +57,7 @@ export class Loop {
 
 		this._running = true;
 
-		this._dt.reset();
+		this.lsts = null;
 		this.loop();
 
 		return this;
