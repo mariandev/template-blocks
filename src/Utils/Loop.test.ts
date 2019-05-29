@@ -1,16 +1,10 @@
 import {Loop} from "./Loop";
-import {DeltaTime} from "../ValueProcessors";
 
 describe("class Loop", () => {
 	let loop: Loop;
 
 	beforeEach(() => {
 		loop = new Loop();
-
-		(loop as any)._dt = {
-			get: jest.fn(),
-			reset: jest.fn(),
-		};
 
 		(loop as any).raf = jest.fn();
 	});
@@ -20,7 +14,6 @@ describe("class Loop", () => {
 
 		expect(loop_pure).toBeDefined();
 		expect(loop_pure).toBeInstanceOf(Loop);
-		expect(loop_pure.dt).toBeInstanceOf(DeltaTime);
 	});
 	it("should not be running by default", () => {
 		expect(loop.isRunning).toBeFalsy();
