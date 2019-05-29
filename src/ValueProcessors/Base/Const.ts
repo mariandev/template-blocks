@@ -1,8 +1,8 @@
-import {ValueProcessor} from "./ValueProcessor";
+import {AnyValueProcessor, ValueProcessor} from "./ValueProcessor";
 
 export class Const<TOut> extends ValueProcessor<TOut> {
 	private readonly value: TOut;
-	constructor(thing: TOut | ValueProcessor<TOut, any, any>) {
+	constructor(thing: TOut | AnyValueProcessor<TOut>) {
 		super();
 
 		if (thing instanceof ValueProcessor) {

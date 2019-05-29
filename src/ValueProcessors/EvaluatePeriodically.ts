@@ -1,8 +1,8 @@
-import {ValueProcessor} from "./Base";
+import {AnyValueProcessor, ValueProcessor} from "./Base";
 import {float} from "../Primitives";
 import {Loop, LoopListener} from "../Utils";
 
-export class EvaluatePeriodically<TOut> extends ValueProcessor<TOut, ValueProcessor<TOut, any, any>, float | Loop> {
+export class EvaluatePeriodically<TOut> extends ValueProcessor<TOut, AnyValueProcessor<TOut>, float | Loop> {
 	private _value: TOut;
 
 	private readonly _loop: Loop;
@@ -23,7 +23,7 @@ export class EvaluatePeriodically<TOut> extends ValueProcessor<TOut, ValueProces
 		}
 	};
 
-	constructor(private readonly _processor: ValueProcessor<TOut, any, any>, thing: float | Loop) {
+	constructor(private readonly _processor: AnyValueProcessor<TOut>, thing: float | Loop) {
 		super(_processor, thing);
 
 		if (thing instanceof Loop) {

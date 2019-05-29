@@ -1,8 +1,8 @@
-import {ValueProcessor} from "./ValueProcessor";
+import {AnyValueProcessor, ValueProcessor} from "./ValueProcessor";
 
 export class Var<TOut> extends ValueProcessor<TOut> {
 	private value: TOut;
-	constructor(thing: TOut | ValueProcessor<TOut, any, any>) {
+	constructor(thing: TOut | AnyValueProcessor<TOut>) {
 		super();
 
 		if (thing instanceof ValueProcessor) {
