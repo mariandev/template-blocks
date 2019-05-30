@@ -1,4 +1,5 @@
 import {float} from "../Primitives";
+import {Const} from "../ValueProcessors/Base";
 
 export type LoopListener = (dt: number) => any;
 
@@ -10,22 +11,22 @@ export class Loop {
 
 	private _listeners: LoopListener[] = [];
 
-	private lsts: float = null;
+	private _lsts: float = null;
 
-	private _dt: number;
+	private _dt = 0;
 	public get dt() {
-		return this._dt;
+		return new Const(this._dt);
 	}
 
 	private loop() {
 		if(!this._running) return;
 
-		this.raf(this.loop);
+		this.raf.call(window, () => this.loop());
 
-		if(this.lsts == null) this.lsts = Date.now();
+		if(this._lsts == null) this._lsts = Date.now();
 		const ts = Date.now();
-		this._dt = (ts - this.lsts) / 1000;
-		this.lsts = ts;
+		this._dt = (ts - this._lsts) / 1000;
+		this._lsts = ts;
 
 		for (const listener of this._listeners) {
 			listener(this._dt);
@@ -62,7 +63,8 @@ export class Loop {
 
 		this._running = true;
 
-		this.lsts = null;
+		this._lsts = null;
+		this._dt = 0;
 		this.loop();
 
 		return this;
