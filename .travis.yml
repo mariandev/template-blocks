@@ -7,10 +7,18 @@ before_script:
   - yarn build
 
 script:
-  - yarn test
+  - |
+    if [ $TRAVIS_BRANCH == "master" ]; then
+      yarn test-coverage
+    else
+      yarn test
+    fi
 
 after_success:
-  - yarn docs
+  - |
+    if [ $TRAVIS_BRANCH == "master" && ! -z "$TRAVIS_TAG" ]; then
+      yarn docs
+    fi
 
 deploy:
   - provider: pages
