@@ -12,6 +12,11 @@ export class Loop {
 
 	private lsts: float = null;
 
+	private _dt: number;
+	public get dt() {
+		return this._dt;
+	}
+
 	private loop() {
 		if(!this._running) return;
 
@@ -19,11 +24,11 @@ export class Loop {
 
 		if(this.lsts == null) this.lsts = Date.now();
 		const ts = Date.now();
-		const dt = (ts - this.lsts) / 1000;
+		this._dt = (ts - this.lsts) / 1000;
 		this.lsts = ts;
 
 		for (const listener of this._listeners) {
-			listener(dt);
+			listener(this._dt);
 		}
 	}
 
