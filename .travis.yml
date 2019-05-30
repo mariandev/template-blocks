@@ -8,14 +8,17 @@ before_script:
 
 script:
   - |
-    if [ $TRAVIS_BRANCH == "master"] || [ $TRAVIS_BRANCH == $TRAVIS_TAG ]; then
+    if [ $TRAVIS_BRANCH == $TRAVIS_TAG ]; then
       yarn test-coverage
     else
       yarn test
     fi
 
 after_success:
-  - yarn docs
+  - |
+    if [ $TRAVIS_BRANCH == $TRAVIS_TAG ]; then
+      yarn docs
+    fi
 
 deploy:
   - provider: pages
