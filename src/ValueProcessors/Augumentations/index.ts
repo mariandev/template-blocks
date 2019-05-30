@@ -2,6 +2,7 @@ import {toConst} from "./toConst";
 import {toVar} from "./toVar";
 import {evaluatePeriodically} from "./evaluatePeriodically";
 import {feedInto} from "./feedInto";
+import {observe} from "./observe";
 
 export * from "./toConst";
 export * from "./toVar";
@@ -17,5 +18,6 @@ declare module "../Base/ValueProcessor" {
 		toVar: typeof toVar;
 		evaluatePeriodically: typeof evaluatePeriodically;
 		feedInto: typeof feedInto;
+		observe: typeof observe;
 	}
 }
