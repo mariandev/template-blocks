@@ -8,7 +8,9 @@ before_script:
 
 script:
   - |
-    if [ $TRAVIS_BRANCH == "master" || $TRAVIS_BRANCH == $TRAVIS_TAG ]; then
+    echo $TRAVIS_BRANCH;
+    echo $TRAVIS_TAG;
+    if [ $TRAVIS_BRANCH == "master" || "$TRAVIS_BRANCH" == "$TRAVIS_TAG" ]; then
       yarn test-coverage
     else
       yarn test
