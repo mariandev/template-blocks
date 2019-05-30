@@ -15,10 +15,7 @@ script:
     fi
 
 after_success:
-  - |
-    if [ $TRAVIS_BRANCH == "master" && ! -z "$TRAVIS_TAG" ]; then
-      yarn docs
-    fi
+  - yarn docs
 
 deploy:
   - provider: pages
