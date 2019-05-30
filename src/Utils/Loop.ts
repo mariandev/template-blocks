@@ -1,5 +1,5 @@
 import {float} from "../Primitives";
-import {Const} from "../ValueProcessors/Base";
+import {Var} from "../ValueProcessors/Base";
 
 export type LoopListener = (dt: number) => any;
 
@@ -13,10 +13,7 @@ export class Loop {
 
 	private _lsts: float = null;
 
-	private _dt = 0;
-	public get dt() {
-		return new Const(this._dt);
-	}
+	public readonly dt = new Var(0);
 
 	private loop() {
 		if(!this._running) return;
@@ -25,11 +22,13 @@ export class Loop {
 
 		if(this._lsts == null) this._lsts = Date.now();
 		const ts = Date.now();
-		this._dt = (ts - this._lsts) / 1000;
+		const dt = (ts - this._lsts) / 1000;
 		this._lsts = ts;
 
+		this.dt.set(dt);
+
 		for (const listener of this._listeners) {
-			listener(this._dt);
+			listener(dt);
 		}
 	}
 
@@ -64,7 +63,7 @@ export class Loop {
 		this._running = true;
 
 		this._lsts = null;
-		this._dt = 0;
+		this.dt.set(0);
 		this.loop();
 
 		return this;
