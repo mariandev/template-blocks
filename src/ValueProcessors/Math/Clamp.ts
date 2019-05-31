@@ -1,10 +1,10 @@
-import {ValueProcessor} from "../Base";
+import {AnyValueProcessor, ValueProcessor} from "../Base";
 import {AnyFloat, float, float2} from "../../Primitives";
 
 export class Clamp<T extends AnyFloat> extends ValueProcessor<T> {
-	constructor(private readonly value: ValueProcessor<T>,
-							private readonly min: ValueProcessor<T>,
-							private readonly max: ValueProcessor<T>,) {
+	constructor(private readonly value: AnyValueProcessor<T>,
+							private readonly min: AnyValueProcessor<T>,
+							private readonly max: AnyValueProcessor<T>) {
 		super();
 	}
 

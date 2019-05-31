@@ -4,7 +4,7 @@ import {IOpEquals, IOpGreater} from "../Interfaces/LogicOperators";
 export class float2 implements IOpEquals, IOpGreater {
 	// noinspection JSSuspiciousNameCombination
 	constructor(public readonly x: float,
-							public readonly y: float = x) {}
+                public readonly y: float = x) {}
 
 	private _sqrMagnitude: float | undefined;
 	public get sqrMagnitude(): float {
@@ -17,7 +17,7 @@ export class float2 implements IOpEquals, IOpGreater {
 
 	private _magnitude: float | undefined;
 	public get magnitude(): float {
-		if(typeof this._sqrMagnitude == "undefined") {
+		if(typeof this._magnitude == "undefined") {
 			this._magnitude = Math.sqrt(this.sqrMagnitude);
 		}
 
@@ -26,7 +26,7 @@ export class float2 implements IOpEquals, IOpGreater {
 
 	private _angle: float | undefined;
 	public get angle(): float {
-		if(!this._angle) {
+		if(typeof this._angle == "undefined") {
 			this._angle = Math.atan2(this.y, this.x);
 		}
 
@@ -70,7 +70,9 @@ export class float2 implements IOpEquals, IOpGreater {
 	}
 
 	public dot(value: float2) {
-		return this.magnitude * value.magnitude * Math.cos(this.angle * Math.PI / 180);
+		const min = Math.min(this.angle, value.angle);
+		const max = Math.max(this.angle, value.angle);
+		return this.magnitude * value.magnitude * Math.cos(max - min);
 	}
 
 	public rotate(deg: float) {
@@ -93,7 +95,7 @@ export class float2 implements IOpEquals, IOpGreater {
 	}
 
 	public greater(other: float2) {
-		return this.x > other.x && this.y > other.y;
+		return this.magnitude > other.magnitude;
 	}
 
 	public static get zero() { return new float2(0, 0); }

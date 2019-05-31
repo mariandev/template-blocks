@@ -18,7 +18,7 @@ describe("Var", () => {
 		expect(theVar.get()).toBe(value);
 	});
 
-	it("should change the value when the set method is called", () => {
+	it("should change the value when the set method is called with primitives", () => {
 		const baseValue = "base value";
 		const newValue = "new value";
 
@@ -29,6 +29,19 @@ describe("Var", () => {
 		theVar.set(newValue);
 
 		expect(theVar.get()).toBe(newValue);
+	});
+
+	it("should change the value when the set method is called with processors", () => {
+		const baseValue = new Var("base value");
+		const newValue = new Var("new value");
+
+		const theVar = new Var(baseValue);
+
+		expect(theVar.get()).toBe(baseValue.get());
+
+		theVar.set(newValue);
+
+		expect(theVar.get()).toBe(newValue.get());
 	});
 
 	it("should create a new instance when the static of method is called with a primitive", () => {
@@ -48,5 +61,18 @@ describe("Var", () => {
 
 		expect(theVar).toBeDefined();
 		expect(theVar.get()).toBe(valueProcessor);
+	});
+
+	it("should change the value unprocessed when the set method is called with a primitive", () => {
+		const baseValue = new Var("base value");
+		const newValue = new Var("new value");
+
+		const theVar = new Var.ofRaw(baseValue);
+
+		expect(theVar.get()).toBe(baseValue);
+
+		theVar.set(newValue);
+
+		expect(theVar.get()).toBe(newValue);
 	});
 });

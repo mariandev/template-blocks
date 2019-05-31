@@ -1,8 +1,8 @@
 import {AnyFloat, float, float2} from "../../Primitives";
-import {ValueProcessor} from "../Base";
+import {AnyValueProcessor, ValueProcessor} from "../Base";
 
-export class Sqrt<T extends AnyFloat> extends ValueProcessor<T, ValueProcessor<T>> {
-	constructor(private readonly value: ValueProcessor<T>) {
+export class Sqrt<TOut extends AnyFloat> extends ValueProcessor<TOut, AnyValueProcessor<TOut>> {
+	constructor(private readonly value: AnyValueProcessor<TOut>) {
 		super(value);
 	}
 
@@ -13,9 +13,9 @@ export class Sqrt<T extends AnyFloat> extends ValueProcessor<T, ValueProcessor<T
 			return new float2(
 				Math.sqrt(value.x),
 				Math.sqrt(value.y)
-			) as T;
+			) as TOut;
 		} else {
-			return Math.sqrt(value as float) as T;
+			return Math.sqrt(value as float) as TOut;
 		}
 	}
 }
