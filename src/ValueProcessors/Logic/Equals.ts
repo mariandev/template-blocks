@@ -1,6 +1,6 @@
 import {ValueProcessor} from "../Base";
 import {IOpEquals} from "../../Interfaces/LogicOperators";
-import {float, float2} from "../../Primitives";
+import {float} from "../../Primitives";
 
 export class Equals<TIn extends IOpEquals | float> extends ValueProcessor<boolean> {
 	constructor(private readonly one: ValueProcessor<TIn>,
@@ -12,10 +12,10 @@ export class Equals<TIn extends IOpEquals | float> extends ValueProcessor<boolea
 		const one = this.one.get();
 		const two = this.two.get();
 
-		const oneFloat2 = one instanceof float2;
-		const twoFloat2 = one instanceof float2;
+		const oneImplementsOp = typeof (one as any).equals !== "undefined";
+		const twoImplementsOp = typeof (two as any).equals !== "undefined";
 
-		if(oneFloat2 && twoFloat2) {
+		if(oneImplementsOp && twoImplementsOp) {
 			return (one as IOpEquals).equals(two as IOpEquals);
 		} else {
 			return one == two;

@@ -1,5 +1,5 @@
 import {ValueProcessor} from "../Base";
-import {float, float2} from "../../Primitives";
+import {float} from "../../Primitives";
 import {IOpGreater} from "../../Interfaces/LogicOperators";
 
 export class Greater<TIn extends IOpGreater | float> extends ValueProcessor<boolean> {
@@ -12,10 +12,10 @@ export class Greater<TIn extends IOpGreater | float> extends ValueProcessor<bool
 		const one = this.one.get();
 		const two = this.two.get();
 
-		const oneFloat2 = one instanceof float2;
-		const twoFloat2 = one instanceof float2;
+		const oneImplementsOp = typeof (one as any).equals !== "undefined";
+		const twoImplementsOp = typeof (two as any).equals !== "undefined";
 
-		if(oneFloat2 && twoFloat2) {
+		if(oneImplementsOp && twoImplementsOp) {
 			return (one as IOpGreater).greater(two as IOpGreater);
 		} else {
 			return one > two;

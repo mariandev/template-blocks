@@ -1,10 +1,10 @@
-import {ValueProcessor} from "../Base";
+import {AnyValueProcessor, ValueProcessor} from "../Base";
 import {AnyFloat} from "../../Primitives";
 import {DoOp} from "./DoOp";
 
-export class Pow<T extends AnyFloat> extends ValueProcessor<T> {
-	constructor(private readonly one: ValueProcessor<T>,
-							private readonly two: ValueProcessor<T>) {
+export class Pow<TOut extends AnyFloat> extends ValueProcessor<TOut> {
+	constructor(private readonly one: AnyValueProcessor<TOut>,
+							private readonly two: AnyValueProcessor<TOut>) {
 		super();
 	}
 
@@ -12,6 +12,6 @@ export class Pow<T extends AnyFloat> extends ValueProcessor<T> {
 		const one = this.one.get();
 		const two = this.two.get();
 
-		return DoOp<T>(one, two, (a, b) => a ** b);
+		return DoOp<TOut>(one, two, (a, b) => a ** b);
 	}
 }

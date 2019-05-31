@@ -1,12 +1,12 @@
-import {Const, ValueProcessor} from "../Base";
+import {AnyValueProcessor, Const, ValueProcessor} from "../Base";
 import {AnyFloat, float, float2} from "../../Primitives";
 
-export class Remap<T extends AnyFloat> extends ValueProcessor<T> {
-	constructor(private readonly value: ValueProcessor<T>,
-							private readonly fromMin: ValueProcessor<T>,
-							private readonly fromMax: ValueProcessor<T>,
-							private readonly toMin: ValueProcessor<T>,
-							private readonly toMax: ValueProcessor<T>) {
+export class Remap<TOut extends AnyFloat> extends ValueProcessor<TOut> {
+	constructor(private readonly value: AnyValueProcessor<TOut>,
+							private readonly fromMin: AnyValueProcessor<TOut>,
+							private readonly fromMax: AnyValueProcessor<TOut>,
+							private readonly toMin: AnyValueProcessor<TOut>,
+							private readonly toMax: AnyValueProcessor<TOut>) {
 		super();
 	}
 

@@ -12,6 +12,7 @@ export * from "./evaluatePeriodically";
 export * from "./feedInto";
 export * from "./observe";
 export * from "./execute";
+export * from "./logs";
 
 /**
  * Internal
