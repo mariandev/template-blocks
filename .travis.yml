@@ -8,7 +8,7 @@ before_script:
 
 script:
   - |
-    if [ $TRAVIS_BRANCH == $TRAVIS_TAG ]; then
+    if [ $TRAVIS_BRANCH == "master" ] || [ $TRAVIS_BRANCH == $TRAVIS_TAG ]; then
       yarn test-coverage
     else
       yarn test
@@ -16,7 +16,7 @@ script:
 
 after_success:
   - |
-    if [ $TRAVIS_BRANCH == $TRAVIS_TAG ]; then
+    if [ $TRAVIS_BRANCH == "master" ] || [ $TRAVIS_BRANCH == $TRAVIS_TAG ]; then
       yarn docs
     fi
 
