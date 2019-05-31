@@ -4,6 +4,7 @@ import {evaluatePeriodically} from "./evaluatePeriodically";
 import {feedInto} from "./feedInto";
 import {observe} from "./observe";
 import {execute} from "./execute";
+import {log, warn, error} from "./logs";
 
 export * from "./toConst";
 export * from "./toVar";
@@ -25,5 +26,10 @@ declare module "../Base/ValueProcessor" {
 		feedInto: typeof feedInto;
 		observe: typeof observe;
 		execute: typeof execute
+
+		// Logs
+		log: typeof log
+		warn: typeof warn
+		error: typeof error
 	}
 }
