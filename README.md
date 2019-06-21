@@ -1,7 +1,7 @@
 # Template Blocks
 
 [![Build Status](https://travis-ci.com/mariandev/template-blocks.svg?branch=master)](https://travis-ci.com/mariandev/template-blocks)
-[![Coverage Status](https://coveralls.io/repos/github/mariandev/template-blocks/badge.svg?branch=feat/test-coverage)](https://coveralls.io/github/mariandev/template-blocks?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/mariandev/template-blocks/badge.svg?branch=master)](https://coveralls.io/github/mariandev/template-blocks?branch=master)
 
 ### Examples
 #### Basic example
