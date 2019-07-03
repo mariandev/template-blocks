@@ -29,7 +29,7 @@ module.exports = {
 	output: {
 		filename: 'template-blocks.js',
 		path: path.resolve(__dirname, "dist"),
-		libraryTarget: "window"
+		libraryTarget: "umd"
 	},
 	plugins: [
 		new DtsBundlePlugin(),
