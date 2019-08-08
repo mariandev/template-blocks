@@ -20,7 +20,7 @@ const delta = new Diff(ts, now);
 
 setInterval(function() {
     console.log(delta.get());
-});
+}, 500);
 ```
 
 
@@ -30,52 +30,40 @@ setInterval(function() {
 const ts = new Timestamp();
 
 // The time since the code was executed
-const delta = ts.pipe(Diff, new Const(ts.get()));
+const delta = ts.pipe(Diff, ts.toConst());
 
 setInterval(function() {
     console.log(delta.get());
-});
+}, 500);
 ```
 
 #### Advanced example
 ```javascript
-// Get mouse position
+const loop = new Loop();
+
 const mousePosition = new GetMousePosition();
-let mouseSnapshot = mousePosition.get();
+const mousePositionSnapshot = mousePosition.toVar();
 
-const mouseMoving = new Var(false);
+const mouseMoving = new Var(false)
+	.execute(function() {
+		const snapshot = mousePosition.toConst();
+		const equal = snapshot.pipe(Equals, mousePositionSnapshot);
+		mousePositionSnapshot.set(snapshot);
+		return equal;
+	})
+	.evaluatePeriodically(loop);
 
-// Delta time
-const dtSource = new DeltaTime();
-const dt = new Var(dtSource.get());
-
-// Light intensity
-const lightIntensity = new Var(0);
-// Node that calculates the next intensity value
-const lightIntensityCalculator = lightIntensity
-  .pipe(
-  	Add,
-  	new If(mouseMoving, Const.of(1), Const.of(-1))
-  	  .pipe(Mul, Const.of(4))
-  	  .pipe(Mul, dt)
-  )
-  .pipe(Clamp, Const.of(0), Const.of(1));
-
-(function loop() {
-	requestAnimationFrame(loop);
-	
-	// Set delta time variable for other nodes to use
-	dt.set(dtSource.get());
-	
-	// Set mouseMoving variable for other noodes to use
-	const _mouseSnapshot = mousePosition.get();
-	mouseMoving.set(!mouseSnapshot.equals(_mouseSnapshot));
-	mouseSnapshot = _mouseSnapshot;
-	
-	// Set the new value of the light intensity
-	lightIntensity.set(lightIntensityCalculator.get());
-	
-	// Output the light intensity
-	console.log(lightIntensity.get());
-})();
+const lightIntensity = new Var(0)
+	.execute(function(ref) {
+		return ref
+			.pipe(
+				Add,
+				new If(mouseMoving, new Const(1), new Const(-1))
+					.pipe(Mul, new Const(4))
+					.pipe(Mul, loop.dt)
+			)
+			.pipe(Clamp, new Const(0), new Const(1));
+	})
+	.observe(console.log)
+	.evaluatePeriodically(loop);
 ```
