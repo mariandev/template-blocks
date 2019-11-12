@@ -1,6 +1,6 @@
 {
   "name": "template-blocks",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "repository": "https://github.com/mariandev/template-blocks",
   "main": "dist/template-blocks.js",
   "files": [
